@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const zod = require('zod')
 const {JWT_SECRET} = require('../config');
-const {User} = require('../db')
+const {User, Account} = require('../db')
 const jwt = require('jsonwebtoken');
 const { authMiddleware } = require('../middleware');
 
@@ -28,7 +28,7 @@ router.post('/signup', async(req, res)=>{
 
     if(existingUser){
         return res.status(411).json({
-            msg:"user already exists"
+            msg:"Email already taken/Incorrect inputs"
         })
     }
     //creating user in User table if there is new user
@@ -90,7 +90,7 @@ router.post('/signin', async(req, res)=>{
 
         res.status(200).json({
             msg:"user signin successfully",
-            toke:token
+            token:token
         })
         return
     }
@@ -112,33 +112,33 @@ router.post('/signin', async(req, res)=>{
 
 //update user password, firstname, lastname
 
-    // const updateBody=zod.object({
-    //     password:zod.string(),
-    //     firstname:zod.string(),
-    //     lastname:zod.string()
-    // })
+    const updateBody=zod.object({
+        password:zod.string().optional(),
+        firstname:zod.string().optional(),
+        lastname:zod.string().optional()
+    })
 
-    // router.put('/', authMiddleware,  async(req, res,)=>{
-    //     const {success} = updateBody.safeParse(req.body)
+    router.put('/', authMiddleware,  async(req, res,)=>{
+        const {success} = updateBody.safeParse(req.body)
 
-    //     if(!success){
-    //         res.status(411).json({
-    //             msg:'error while updating '
-    //         })
-    //     }
+        if(!success){
+            res.status(411).json({
+                msg:'error while updating information'
+            })
+        }
 
-    //     // const updateUser = await User.updateOne(req.body, {
-    //     //     id: req.userId
-    //     // })
+        // const updateUser = await User.updateOne(req.body, {
+        //     id: req.userId
+        // })
         
-    //          await User.updateOne(req.body, 
-    //             {id: req.userId}
-    //         )
+             await User.updateOne(req.body, 
+                {id: req.userId}
+            )
         
-    //     res.json({
-    //         msg:"user updated successfully"
-    //     })
-    // })
+        res.json({
+            msg:"user updated successfully"
+        })
+    })
 
 
 

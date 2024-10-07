@@ -17,6 +17,7 @@ mongoose.connect('mongodb://localhost:27017/paytm').then(()=>{
 // }
 //call the function in main index.js file connectMongodb() and import  it
 
+//create schema for users
 const userSchema =new  mongoose.Schema({
     username:{
         type:String,
@@ -32,20 +33,20 @@ const userSchema =new  mongoose.Schema({
         type:String,
         required:true,
         trim:true,
-        lowercase:true,
-        minLength:5,
-        maxLength:30,
+        minLength:3,
 
     },
     firstname:{
         type:String,
+        required:true,
         trim:true,
-        lowercase:true,
+        maxLength:50
     },
     lastname:{
         type:String,
+        required:true,
         trim:true,
-        lowercase:true,
+        maxLength:50,
     },
 
 })
@@ -65,6 +66,7 @@ const accountSchema = new mongoose.Schema({
         trim:true
     }
 })
+
 
 const Account = mongoose.model('Account', accountSchema);
 const User = mongoose.model('User', userSchema);

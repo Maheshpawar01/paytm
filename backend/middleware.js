@@ -34,9 +34,10 @@ const {JWT_SECRET} = require('./config')
 
 const authMiddleware = async(req, res, next)=>{
     const authHeader = req.headers.authorization
+    // console.log(authHeader)
 
-    if(!authHeader || authHeader.startsWith('Bearer ')){
-        res.status(403).json({});
+    if(!authHeader || !authHeader.startsWith('Bearer ')){
+        return res.status(403).json({});
     }
 
     // split the token from space to verify it 
@@ -45,14 +46,18 @@ const authMiddleware = async(req, res, next)=>{
     try {
         const decoded = jwt.verify(token, JWT_SECRET)
 
-         if(decoded.userId){
-            req.userId = decoded.userId;
-            next();
-         }else{
-            res.status(411).json({})
-         }
+         req.userId = decoded.userId;
+
+        next();
+        //  if(decoded.userId){
+        //     req.userId = decoded.userId;
+        //     next();
+        //  }else{
+        //     res.status(411).json({})
+        //  }
     } catch (error) {
-        res.status(403).json({})
+        console.log(error)
+        return res.status(403).json({})
     }
 }
 
