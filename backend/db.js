@@ -1,7 +1,9 @@
 const mongoose = require('mongoose')
+require('dotenv').config();  // Load environment variables from .env file
 
+const MONGOURI = process.env.MONGOURI;  // Access the MONGOURI from .env
 
-mongoose.connect('mongodb://localhost:27017/paytm').then(()=>{
+mongoose.connect(process.env.MONGOURI).then(()=>{
     console.log('connected to mongodb')
 }).catch((error)=>{
     console.log('connection error', error)

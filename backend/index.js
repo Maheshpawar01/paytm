@@ -3,6 +3,7 @@ const app = express();
 const rootRouter = require('./routes/index')
 const cors= require('cors')
 
+const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use(cors());
 
@@ -14,6 +15,6 @@ app.get('/', (req, res)=>{
     })
 })
 
-app.listen(3000, (req, res)=>{
+app.listen(port, (req, res)=>{
     console.log('port is running on port 300')
 })
