@@ -25,7 +25,6 @@ const userSchema =new  mongoose.Schema({
         unique:true,
         trim:true,
         lowercase:true,
-        minLength:3,
         maxLength:30,
 
     },
@@ -36,15 +35,13 @@ const userSchema =new  mongoose.Schema({
         minLength:3,
 
     },
-    firstname:{
+    firstName:{
         type:String,
-        required:true,
         trim:true,
         maxLength:50
     },
-    lastname:{
+    lastName:{
         type:String,
-        required:true,
         trim:true,
         maxLength:50,
     },

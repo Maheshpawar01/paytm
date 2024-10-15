@@ -10,14 +10,14 @@ const { authMiddleware } = require('../middleware');
 const signupBody = zod.object({
     username: zod.string().email(),
     password: zod.string(),
-    firstname: zod.string(),
-    lastname: zod.string(),
+    firstName: zod.string(),
+    lastName: zod.string(),
 })
 
 router.post('/signup', async(req, res)=>{
     const {success} = signupBody.safeParse(req.body)
     if(!success){
-        return res.status(411).json({
+        return res.status(400).json({
             message: "Email already taken / Incorrect inputs"        
         })
     }
@@ -27,7 +27,7 @@ router.post('/signup', async(req, res)=>{
     })
 
     if(existingUser){
-        return res.status(411).json({
+        return res.status(400).json({
             msg:"Email already taken/Incorrect inputs"
         })
     }
@@ -35,8 +35,8 @@ router.post('/signup', async(req, res)=>{
     const user = await User.create({
         username:req.body.username,
         password:req.body.password,
-        firstname:req.body.firstname,
-        lastname:req.body.lastname,
+        firstName:req.body.firstName,
+        lastName:req.body.lastName,
     })
     //seting user._id to UserId (user = above user and when it create new user then it allowcate new id to it this, create user ._id = userId)
     const userId = user._id;
@@ -110,12 +110,12 @@ router.post('/signin', async(req, res)=>{
 })
 
 
-//update user password, firstname, lastname
+//update user password, firstName, lastName
 
     const updateBody=zod.object({
         password:zod.string().optional(),
-        firstname:zod.string().optional(),
-        lastname:zod.string().optional()
+        firstName:zod.string().optional(),
+        lastName:zod.string().optional()
     })
 
     router.put('/', authMiddleware,  async(req, res,)=>{
@@ -146,20 +146,20 @@ router.post('/signin', async(req, res)=>{
     //Route to get users from the backend, filterable via firstName/lastName
 
     router.get('/bulk', async(req, res)=>{
-        const find = req.query.filter || "";
+        const filter = req.query.filter || "";
 
         const users = await User.find({
             $or:[
-                {firstname:{"$regex": filter}},
-                {lastname:{"$regex": filter}}
+                {firstName:{"$regex": filter}},
+                {lastName:{"$regex": filter}}
             ]
         })
 
         res.json({
             user: users.map(user=>({
                 username:user.username,
-                firstname:user.firstname,
-                lastname:user.lastname,
+                firstName:user.firstName,
+                lastName:user.lastName,
                 _id:user._id
             }))
         })
