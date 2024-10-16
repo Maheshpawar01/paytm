@@ -2,10 +2,17 @@ const express = require('express')
 const app = express();
 const rootRouter = require('./routes/index')
 const cors= require('cors')
-
 const port = process.env.PORT || 3000;
+
+const corsOptions = {
+    origin: 'https://your-frontend-url.vercel.app', // Vercel frontend URL
+    optionsSuccessStatus: 200
+  };
+  
+  app.use(cors(corsOptions));
+
 app.use(express.json());
-app.use(cors());
+
 
 app.use('/api/v1', rootRouter)
 
