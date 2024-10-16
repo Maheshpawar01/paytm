@@ -6,7 +6,8 @@ const port = process.env.PORT || 3000;
 
 const corsOptions = {
     origin: 'https://paytm-b.vercel.app', // Vercel frontend URL
-    optionsSuccessStatus: 200
+    methods: ["GET", "POST", "PUT", "DELETE"], // Allowed HTTP methods
+    credentials: true, // If you need to send cookies or authorization headers
   };
   
   app.use(cors(corsOptions));
