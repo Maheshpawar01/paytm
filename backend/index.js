@@ -5,7 +5,7 @@ const cors= require('cors')
 const port = process.env.PORT || 3000;
 
 const corsOptions = {
-    origin: 'https://your-frontend-url.vercel.app', // Vercel frontend URL
+    origin: 'https://paytm-b.vercel.app', // Vercel frontend URL
     optionsSuccessStatus: 200
   };
   
