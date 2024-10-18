@@ -49,7 +49,7 @@ function User({user}){
         
         <div className="felx flex-col justify-center h-full">
             <Button onClick={(e)=>
-              navigate("/send?id=" + user._id + "&name=" + user.firstName + " " + user.lastName)
+              navigate("/send?id=" + user._id + "&name=" + user.firstName)
             } label={"Send Mondy"}/>
         </div>
     </div>
