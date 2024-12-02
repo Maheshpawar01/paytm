@@ -5,10 +5,14 @@ import InputBox from '../components/InputBox';
 import Button from '../components/Button';
 import BottomWarning from '../components/BottomWarning';
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
+
 
 function Signin() {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
+  const navigate = useNavigate()
+
   return (
     <div className="bg-slate-300 h-screen flex justify-center">
     <div className="flex flex-col justify-center">
@@ -27,6 +31,8 @@ function Signin() {
             username:username,
             password: password
           })
+          navigate("/dashboard")
+
         }} label={"Sign In"}/>
         </div>
         <BottomWarning label={"Don't have an account?" } buttonText={"Sign UP"} to={"/signup"}/>

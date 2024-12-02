@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import axios from 'axios'
 
 function SendMoney() {
@@ -7,6 +7,7 @@ function SendMoney() {
   const id = searchParams.get("id")
   const name= searchParams.get("name")
   const [amount, setAmount] = useState("")
+  const navigate = useNavigate()
   return (
     <div className='flex justify-center h-screen bg-gray-100'>
       <div className="h-full flex flex-col justify-center">
@@ -45,12 +46,12 @@ function SendMoney() {
                     }
                   }
                   )
-                        // Show alert
-      alert("Transaction Complete");
+                  // Navigate back to the dashboard
+                        navigate("/dashboard")
+                  // Show alert
+                    alert("Transaction Complete");
 
-      // Navigate back to the dashboard
-      navigate("/dashboard");
-              }}
+    }}
                className='justify-center rounded-md text-sm font-medium ring-offset-background transition-colors h-10 px-10 py-2 w-full bg-green-500 text-white'>Initiate Transfer</button>
             </div>
           </div>
