@@ -45,6 +45,11 @@ function SendMoney() {
                     }
                   }
                   )
+                        // Show alert
+      alert("Transaction Complete");
+
+      // Navigate back to the dashboard
+      navigate("/dashboard");
               }}
                className='justify-center rounded-md text-sm font-medium ring-offset-background transition-colors h-10 px-10 py-2 w-full bg-green-500 text-white'>Initiate Transfer</button>
             </div>
