@@ -4,8 +4,9 @@ const rootRouter = require('./routes/index')
 const cors= require('cors')
 const port = process.env.PORT || 3000;
 
+const allowedOrigins = ['https://paytm-b.vercel.app', 'http://localhost:5173']
 const corsOptions = {
-    origin: 'https://paytm-b.vercel.app', // Vercel frontend URL
+    origin: allowedOrigins, // Vercel frontend URL
     methods: ["GET", "POST", "PUT", "DELETE"], // Allowed HTTP methods
     credentials: true, // If you need to send cookies or authorization headers
   };
@@ -24,5 +25,5 @@ app.get('/', (req, res)=>{
 })
 
 app.listen(port, (req, res)=>{
-    console.log('port is running on port 300')
+    console.log('port is running on port 3000')
 })
