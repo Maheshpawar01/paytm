@@ -10,14 +10,15 @@ function Users() {
   const [filter, setFilter] = useState("")
 
   useEffect(()=>{
-    axios.get("https://paytm-backend-g7eh.onrender.com/api/v1/user/bulk?filter=" + filter)
+    // axios.get("https://paytm-backend-g7eh.onrender.com/api/v1/user/bulk?filter=" + filter)
+    axios.get("http://localhost:3000/api/v1/user/bulk?filter=" + filter)
     .then(response=>{
       setUsers(response.data.user)
     })
   }, [filter])
   return (
     <>
-      <div>Users</div>
+      <div className="inline-block mt-4 bg-gray-500 text-white font-bold rounded-md py-2 px-4 hover:bg-gray-800 cursor-pointer">Send Money</div>
       <div className="my-2">
         <input onChange={e=>{
           setFilter(e.target.value)
