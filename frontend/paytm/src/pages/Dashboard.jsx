@@ -12,8 +12,10 @@ function Dashboard() {
       <hr />
         <div className='w-[90%] ml-4'>
         <Appbar/>
-            <Balance value={"10,000"}/>
+          <div > 
             <Users/>
+            <Balance value={"10,000"}/>
+          </div>
         </div>
     </div>
   )
