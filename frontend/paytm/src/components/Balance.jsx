@@ -8,7 +8,7 @@ function Balance({value}) {
     <div className='p-6 bg-gradient-to-r from-blue-400  to-cyan-400 rounded-lg shadow-lg'>
       <div>
         <h1 className='text-white text-lg font-semibold'>Balance</h1>
-        <h1 className='text-white text-2xl font-bold'>₹10000</h1>
+        <h1 className='text-white text-2xl font-bold'>₹100</h1>
       </div>
 
       <div className='mt-2 mb-5'>
