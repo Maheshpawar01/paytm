@@ -1,6 +1,5 @@
 import React from 'react'
 import Appbar from '../components/Appbar'
-import Balance from '../components/Balance'
 import Users from '../components/Users'
 import Navbar from '../components/Navbar'
 function Dashboard() {
@@ -14,7 +13,6 @@ function Dashboard() {
         <Appbar/>
           <div > 
             <Users/>
-            <Balance value={"10,000"}/>
           </div>
         </div>
     </div>

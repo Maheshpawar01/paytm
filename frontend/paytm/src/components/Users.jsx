@@ -3,6 +3,8 @@ import { useState } from "react";
 import Button from "./Button";
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
+import Balance from '../components/Balance'
+
 
 
 function Users() {
@@ -24,23 +26,27 @@ function Users() {
   return (
     <>
 
-    <div className="">
-    <div>
-      <div className="">
-        <h2>send Money</h2>
-        <div className="my-2">
-          <input onChange={e=>{
-            setFilter(e.target.value)
-          }} 
+<div className="relative overflow-hidden flex justify-between p-8 rounded-lg">
+  <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-purple-500 via-indigo-500 to-blue-500 opacity-30 blur-lg animate-wave"></div>
+  <div className="z-10 w-[70%]">
+    <div className="my-2">
+      <h2 className="bg-slate-400 inline-block px-2 py-1 rounded text-xl font-medium">Send Money</h2>
+      <div>
+        <input
+          onChange={e => setFilter(e.target.value)}
           onFocus={handleFocus}
-          type="text" placeholder="Search here...."
-          className="w-[50%] px-2 py-1 border rounded border-slate-400"
-          />
-        </div>
+          type="text"
+          placeholder="Search here...."
+          className="w-[90%] px-2 py-1 border rounded border-slate-400 my-1 text-lg"
+        />
       </div>
     </div>
-    <div></div>
-    </div>
+  </div>
+  <div className="w-[35%] mr-10 z-10">
+    <Balance value={"10,000"} />
+  </div>
+</div>
+
       {/* <div className="inline-block mt-4 bg-gray-500 text-white font-bold rounded-md py-2 px-4 hover:bg-gray-800 cursor-pointer justify">Send Money</div>
       <div className="my-2">
         <input onChange={e=>{
