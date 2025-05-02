@@ -5,6 +5,7 @@ import { RiMastercardFill } from "react-icons/ri";
 
 function Balance({value}) {
   return (
+    <div className='motion-translate-x-in-[-3%] motion-translate-y-in-[-160%]'>
     <div className='p-6 bg-gradient-to-r from-blue-400  to-cyan-400 rounded-lg shadow-lg'>
       <div>
         <h1 className='text-white text-lg font-semibold'>Balance</h1>
@@ -21,6 +22,7 @@ function Balance({value}) {
 
       </div>
 
+    </div>
     </div>
 
     // <div className='flex'>
